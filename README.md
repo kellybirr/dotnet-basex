@@ -15,6 +15,8 @@ I'm sure I'm not the first to come up with an implementation like this.
 ```csharp
 void Main()
 {
+    // encode/decode as Base36
+
     long val = Environment.TickCount64;
     System.Console.WriteLine(val);
 
@@ -28,3 +30,25 @@ void Main()
     System.Console.WriteLine(ok);
 }
 ```
+
+and now for something completely different...
+```csharp
+void Main()
+{
+    // because why not?
+    const string base27 = "0123456789abcdefghijklmnopq";
+
+    long val = Environment.TickCount64;
+    System.Console.WriteLine(val);
+
+    string enc = BaseX.Encode(val, base27);
+    System.Console.WriteLine(enc);
+
+    long dec = BaseX.Decode(enc, base27);
+    System.Console.WriteLine(dec);
+
+    bool ok = (val == dec);
+    System.Console.WriteLine(ok);
+}
+```
+
